@@ -20,8 +20,7 @@ class Media(models.Model):
     )
     mdeia_url            =      models.ImageField(upload_to='images/%y/&m/%d',)
     media_type           =      models.CharField(max_length=20, choices=Type_CHOICES)  
-
-=======
+    
 
 class Tracking(models.Model):
     createby    = models.ForeignKey(User , ondelete = models.CASCADE)
@@ -35,22 +34,26 @@ class AppRegisteration(models.Model):
     pass
 
     
->>>>>>> 7f5fc09b7043354248408ec369030009816c4340
+# >>>>>>> 7f5fc09b7043354248408ec369030009816c4340
 class New(models.Model):
-   LANGUAGE_CHOICES = (
-        ('en', 'en'),
-        ('ar', 'ar'),
-        ('fr', 'fr'),
+   PLATEFORM_CHOICES = (
+        ('android', 'android'),
+        ('ios', 'ios'),
     )
-   lang  = models.CharField(choices=LANGUAGE_CHOICES, max_length=13, blank=True, default='en')
-   category = models.CharField(choices=CATEGORY_CHOICES, max_length=13, blank=True, default='last')
+   
    title = models.TextField(max_length=150,blank=False)
-   creation_datetime = models.DateTimeField(auto_now=True)
-   img_1 = models.ImageField(upload_to='images/%y/&m/%d')
-   img_2 = models.ImageField(upload_to='images/%y/&m/%d')
-   img_3 = models.ImageField(upload_to='images/%y/&m/%d')
+   category = models.ForeignKey(Category, ondelete=models.CASCADE)
+   discription = models.CharField(max_length=255)
+   thumb = models.ImageField(upload_to='images/%y/&m/%d')
+   fb_link
+   
+   language_code  = models.CharField(choices=LANGUAGE_CHOICES, max_length=13, blank=True, default='en')
+   media = models.ForeignKey(Media, ondelete=models.CASCADE)
+   
+   is_puplished = models.BooleanField(default=False)
+   is_active    = models.BooleanField(default=False)
 
-   details = models.TextField(max_length=1000,blank=False)
+   platform = models.TextField(max_length=1000,blank=False, choices=PLATEFORM_CHOICES)
    
 
 
