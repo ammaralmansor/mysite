@@ -3,6 +3,26 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from datetime import datetime as dt 
+
+class Category(models.Model):
+    last           =    models.BooleanField(default=True)
+    local          =    models.BooleanField(default=False)
+    international  =    models.BooleanField(default=False)
+    sport          =    models.BooleanField(default=False)
+
+class Media(models.Model):
+    Type_CHOICES = (
+        ('Image', 'image'),
+        ('Audio', 'audio'),
+        ('Video', 'video'),
+        ('NoMedia', 'nomedia'),
+    )
+    mdeia_url            =      models.ImageField(upload_to='images/%y/&m/%d',)
+    media_type           =      models.CharField(max_length=20, choices=Type_CHOICES)  
+
+class Tracking(models.Model):
+    create_by  = 
+    created_on = models.DateField(auto_now_add=True, )
 class New(models.Model):
    CATEGORY_CHOICES = (
         ('last', 'last'),
