@@ -21,12 +21,9 @@ class Media(models.Model):
     mdeia_url            =      models.ImageField(upload_to='images/%y/&m/%d',)
     media_type           =      models.CharField(max_length=20, choices=Type_CHOICES)  
 
-class Tracking(models.Model):
-    create_by  = 
-    created_on = models.DateField(auto_now_add=True, )
 =======
 
-class Tracing(models.Model):
+class Tracking(models.Model):
     createby    = models.ForeignKey(User , ondelete = models.CASCADE)
     createdon   = models.DateTimeField(auto_now=True)
     Modifiedby  = models.ForeignKey(User , ondelete = models.CASCADE)
