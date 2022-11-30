@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 from datetime import datetime as dt 
 
+<<<<<<< HEAD
 class Category(models.Model):
     last           =    models.BooleanField(default=True)
     local          =    models.BooleanField(default=False)
@@ -23,13 +24,22 @@ class Media(models.Model):
 class Tracking(models.Model):
     create_by  = 
     created_on = models.DateField(auto_now_add=True, )
+=======
+
+class Tracing(models.Model):
+    createby    = models.ForeignKey(User , ondelete = models.CASCADE)
+    createdon   = models.DateTimeField(auto_now=True)
+    Modifiedby  = models.ForeignKey(User , ondelete = models.CASCADE)
+    createdon   = models.DateTimeField(auto_now=True)
+
+
+
+class AppRegisteration(models.Model):
+    pass
+
+    
+>>>>>>> 7f5fc09b7043354248408ec369030009816c4340
 class New(models.Model):
-   CATEGORY_CHOICES = (
-        ('last', 'last'),
-        ('local', 'local'),
-        ('international', 'international'),
-        ('sport', 'sport'),
-    )
    LANGUAGE_CHOICES = (
         ('en', 'en'),
         ('ar', 'ar'),
