@@ -3,13 +3,21 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from datetime import datetime as dt 
+
+
+class Tracing(models.Model):
+    createby    = models.ForeignKey(User , ondelete = models.CASCADE)
+    createdon   = models.DateTimeField(auto_now=True)
+    Modifiedby  = models.ForeignKey(User , ondelete = models.CASCADE)
+    createdon   = models.DateTimeField(auto_now=True)
+
+
+
+class AppRegisteration(models.Model):
+    pass
+
+    
 class New(models.Model):
-   CATEGORY_CHOICES = (
-        ('last', 'last'),
-        ('local', 'local'),
-        ('international', 'international'),
-        ('sport', 'sport'),
-    )
    LANGUAGE_CHOICES = (
         ('en', 'en'),
         ('ar', 'ar'),
