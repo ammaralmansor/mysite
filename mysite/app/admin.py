@@ -1,6 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-from . import models
+from .models import *
 
-admin.site.register(models.New)
+admin.site.register(New)
+admin.site.register(Category)
+admin.site.register(Tracking)
+admin.site.register(Media)
