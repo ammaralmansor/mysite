@@ -22,10 +22,10 @@ class Media(models.Model):
 
 
 class Tracking(models.Model):
-    created_by = models.ForeignKey(User, ondelete=models.CASCADE)
+    created_by= models.ForeignKey(User, on_delete=models.CASCADE, related_name="createdby")
     created_on = models.DateTimeField(auto_now_add=True)
-    Modified_by = models.ForeignKey(User, ondelete=models.CASCADE)
-    Modified_on = models.DateTimeField(auto_now=True)
+    modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="modifiedby")
+    modified_on = models.DateTimeField(auto_now=True)
 
 
 class AppRegisteration(models.Model):
@@ -45,7 +45,7 @@ class New(models.Model):
     )
 
     title = models.TextField(max_length=150, blank=False)
-    category = models.ForeignKey(Category, ondelete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     discription = models.CharField(max_length=255)
     thumb = models.FileField(upload_to=None)
     fb_link = models.URLField(max_length=200)
@@ -53,7 +53,7 @@ class New(models.Model):
     language_code = models.CharField(
         choices=LANGUAGE_CHOICES, max_length=13, blank=True, default='en')
     
-    media = models.ForeignKey(Media, ondelete=models.CASCADE)
+    media = models.ForeignKey(Media, on_delete=models.CASCADE)
 
     is_puplished = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
