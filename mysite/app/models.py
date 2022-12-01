@@ -3,8 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from datetime import datetime as dt 
-
-<<<<<<< HEAD
+ 
 class Category(models.Model):
     last           =    models.BooleanField(default=True)
     local          =    models.BooleanField(default=False)
