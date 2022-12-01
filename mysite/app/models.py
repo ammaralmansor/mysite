@@ -22,10 +22,10 @@ class Media(models.Model):
 
 
 class Tracking(models.Model):
-    createby = models.ForeignKey(User, ondelete=models.CASCADE)
-    createdon = models.DateTimeField(auto_now=True)
-    Modifiedby = models.ForeignKey(User, ondelete=models.CASCADE)
-    createdon = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, ondelete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+    Modified_by = models.ForeignKey(User, ondelete=models.CASCADE)
+    Modified_on = models.DateTimeField(auto_now=True)
 
 
 class AppRegisteration(models.Model):
