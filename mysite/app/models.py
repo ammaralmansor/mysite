@@ -32,7 +32,6 @@ class AppRegisteration(models.Model):
     pass
 
 
-# >>>>>>> 7f5fc09b7043354248408ec369030009816c4340
 class New(models.Model):
     PLATEFORM_CHOICES = (
         ('android', 'android'),
