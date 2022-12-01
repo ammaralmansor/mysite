@@ -2,8 +2,7 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 
-from datetime import datetime as dt
-
+from datetime import datetime as dt 
 
 class Category(models.Model):
     last = models.BooleanField(default=True)
@@ -19,9 +18,10 @@ class Media(models.Model):
         ('Video', 'video'),
         ('NoMedia', 'nomedia'),
     )
-    mdeia_url = models.ImageField(upload_to='images/%y/&m/%d',)
-    media_type = models.CharField(max_length=20, choices=Type_CHOICES)
+    mdeia_url            =      models.ImageField(upload_to='images/%y/&m/%d',)
+    media_type           =      models.CharField(max_length=20, choices=Type_CHOICES)  
 
+=======
 
 class Tracking(models.Model):
     createby = models.ForeignKey(User, related_name="create_relation" ,on_delete=models.CASCADE)
@@ -33,19 +33,23 @@ class Tracking(models.Model):
 class AppRegisteration(models.Model):
     pass
 
-
+    
+>>>>>>> 7f5fc09b7043354248408ec369030009816c4340
 class New(models.Model):
-    LANGUAGE_CHOICES = (('en', 'en'), ('ar', 'ar'), ('fr', 'fr'))
-    PLATFORM_CHOICES = (('iso', 'iso'), ('android', 'android'))
-    title = models.TextField(max_length=150, blank=False)
-    lang = models.CharField(choices=LANGUAGE_CHOICES,
-                            max_length=13, blank=True, default='en')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    description = models.TextField(max_length=1000, blank=False)
-    Thumb = models.FileField(upload_to=None, max_length=100)
-    media = models.ForeignKey(Media, on_delete=models.CASCADE)
-    FB_link = models.URLField(max_length=200)
-    ispublished = models.BooleanField(default=False)
-    isActive = models.BooleanField(default=False)
-    platform = models.CharField(choices=LANGUAGE_CHOICES,
-                                max_length=7, blank=False, default='ios')
+   LANGUAGE_CHOICES = (
+        ('en', 'en'),
+        ('ar', 'ar'),
+        ('fr', 'fr'),
+    )
+   lang  = models.CharField(choices=LANGUAGE_CHOICES, max_length=13, blank=True, default='en')
+   category = models.CharField(choices=CATEGORY_CHOICES, max_length=13, blank=True, default='last')
+   title = models.TextField(max_length=150,blank=False)
+   creation_datetime = models.DateTimeField(auto_now=True)
+   img_1 = models.ImageField(upload_to='images/%y/&m/%d')
+   img_2 = models.ImageField(upload_to='images/%y/&m/%d')
+   img_3 = models.ImageField(upload_to='images/%y/&m/%d')
+
+   details = models.TextField(max_length=1000,blank=False)
+   
+
+
