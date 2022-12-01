@@ -2,7 +2,6 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 
-from datetime import datetime as dt 
 
 class Category(models.Model):
     last = models.BooleanField(default=True)
@@ -18,38 +17,45 @@ class Media(models.Model):
         ('Video', 'video'),
         ('NoMedia', 'nomedia'),
     )
-    mdeia_url            =      models.ImageField(upload_to='images/%y/&m/%d',)
-    media_type           =      models.CharField(max_length=20, choices=Type_CHOICES)  
+    mdeia_url = models.ImageField(upload_to=None)
+    media_type = models.CharField(max_length=20, choices=Type_CHOICES)
 
-=======
 
 class Tracking(models.Model):
-    createby = models.ForeignKey(User, related_name="create_relation" ,on_delete=models.CASCADE)
+    createby = models.ForeignKey(User, ondelete=models.CASCADE)
     createdon = models.DateTimeField(auto_now=True)
-    Modifiedby = models.ForeignKey(User,related_name="modify_relation" , on_delete=models.CASCADE)
+    Modifiedby = models.ForeignKey(User, ondelete=models.CASCADE)
     createdon = models.DateTimeField(auto_now=True)
 
 
 class AppRegisteration(models.Model):
     pass
 
-    
->>>>>>> 7f5fc09b7043354248408ec369030009816c4340
+
+# >>>>>>> 7f5fc09b7043354248408ec369030009816c4340
 class New(models.Model):
-   LANGUAGE_CHOICES = (
+    PLATEFORM_CHOICES = (
+        ('android', 'android'),
+        ('ios', 'ios'),
+    )
+    LANGUAGE_CHOICES = (
         ('en', 'en'),
         ('ar', 'ar'),
         ('fr', 'fr'),
     )
-   lang  = models.CharField(choices=LANGUAGE_CHOICES, max_length=13, blank=True, default='en')
-   category = models.CharField(choices=CATEGORY_CHOICES, max_length=13, blank=True, default='last')
-   title = models.TextField(max_length=150,blank=False)
-   creation_datetime = models.DateTimeField(auto_now=True)
-   img_1 = models.ImageField(upload_to='images/%y/&m/%d')
-   img_2 = models.ImageField(upload_to='images/%y/&m/%d')
-   img_3 = models.ImageField(upload_to='images/%y/&m/%d')
 
-   details = models.TextField(max_length=1000,blank=False)
-   
+    title = models.TextField(max_length=150, blank=False)
+    category = models.ForeignKey(Category, ondelete=models.CASCADE)
+    discription = models.CharField(max_length=255)
+    thumb = models.ImageField(upload_to=None)
+    fb_link = models.URLField(max_length=200)
 
+    language_code = models.CharField(
+        choices=LANGUAGE_CHOICES, max_length=13, blank=True, default='en')
+    media = models.ForeignKey(Media, ondelete=models.CASCADE)
 
+    is_puplished = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+
+    platform = models.TextField(
+        max_length=1000, blank=False, choices=PLATEFORM_CHOICES)
