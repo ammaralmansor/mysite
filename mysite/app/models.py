@@ -52,6 +52,7 @@ class New(models.Model):
 
     language_code = models.CharField(
         choices=LANGUAGE_CHOICES, max_length=13, blank=True, default='en')
+    
     media = models.ForeignKey(Media, ondelete=models.CASCADE)
 
     is_puplished = models.BooleanField(default=False)
