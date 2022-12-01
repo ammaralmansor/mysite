@@ -47,7 +47,7 @@ class New(models.Model):
     title = models.TextField(max_length=150, blank=False)
     category = models.ForeignKey(Category, ondelete=models.CASCADE)
     discription = models.CharField(max_length=255)
-    thumb = models.ImageField(upload_to=None)
+    thumb = models.FileField(upload_to=None)
     fb_link = models.URLField(max_length=200)
 
     language_code = models.CharField(
