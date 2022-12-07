@@ -19,9 +19,24 @@ from django.conf import settings
 from django.conf.urls.static import static
 from app.views import index
 
+from rest_framework import routers
+
+from apps.api.views.news_views import CreateListNewsViewSet
+from music.views import List
+
+router = routers.DefaultRouter()
+router.register('', CreateListNewsViewSet, basename="News")
+router.register('music', List, basename="music")
+
+
+# SwaggerUIRenderer.template = 'swagger-ui.html'
+
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
+    path('', CreateListNewsViewSet.as_view({'get': 'get'})),
+    path('', include(router.urls)),
+            
     path('l' , index , name="index" )
 ]
-
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

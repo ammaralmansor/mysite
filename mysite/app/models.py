@@ -21,11 +21,14 @@ class Media(models.Model):
     media_type = models.CharField(max_length=20, choices=Type_CHOICES)
 
 
-class Tracking(models.Model):
+class Auditable(models.Model):
     created_by= models.ForeignKey(User, on_delete=models.CASCADE, related_name="createdby")
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="modifiedby")
     modified_on = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        abstract = True
 
 
 class AppRegisteration(models.Model):
@@ -56,7 +59,7 @@ class AppRegisteration(models.Model):
     FirebaseToken = models.CharField(max_length=100 , default=None)
 
 
-class New(models.Model):
+class News(Auditable):
     PLATEFORM_CHOICES = (
         ('android', 'android'),
         ('ios', 'ios'),
@@ -83,3 +86,6 @@ class New(models.Model):
 
     platform = models.TextField(
         max_length=1000, blank=False, choices=PLATEFORM_CHOICES)
+
+    class Meta:
+        verbose_name_plural = "News"
