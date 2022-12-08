@@ -25,17 +25,20 @@ from apps.api.views.news_views import CreateListNewsViewSet
 from music.views import List
 
 router = routers.DefaultRouter()
-router.register('', CreateListNewsViewSet, basename="News")
 router.register('music', List, basename="music")
 
 
 # SwaggerUIRenderer.template = 'swagger-ui.html'
 
+news_list_view = CreateListNewsViewSet.as_view({'get': 'get'})
+# news_create_view = CreateListNewsViewSet.as_view({'post': 'post'})
+
 urlpatterns = [
     
     path('admin/', admin.site.urls),
-    path('', CreateListNewsViewSet.as_view({'get': 'get'})),
-    path('', include(router.urls)),
+    path('', news_list_view),
+    # path('', news_create_view),
+    
             
     path('l' , index , name="index" )
 ]

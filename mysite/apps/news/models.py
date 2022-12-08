@@ -42,8 +42,8 @@ class News(Auditable):
     thumb = models.FileField(upload_to=None)
     language_code = models.CharField(choices=LANGUAGE_CHOICES, max_length=13, blank=True, default='en')
 
-    is_puplished = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_puplished = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
     platform = models.TextField(max_length=1000, blank=False, choices=PLATEFORM_CHOICES)
     
